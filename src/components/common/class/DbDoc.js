@@ -1,4 +1,4 @@
-export default class Database{
+export default class DbDoc{
   constructor({_id, data, _rev}){
     this._id = _id
     this.data = data
