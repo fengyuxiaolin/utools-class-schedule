@@ -1,3 +1,4 @@
+import { HourMinutes } from './HourMinutes'
 /**
  * 课表类
  * @param {object} param0
@@ -22,18 +23,21 @@ export const Schedule = class Schedule {
     this.severalListOneDay = severalListOneDay
     this.dayList = dayList
   }
+  static getDefaultSchedule() {
+    return new Schedule({}).initSchedule()
+  }
   initSchedule() {
     this.scheduleName = ''
     this.fixedLength = 40
     this.fixedRest = 10
-    this.startTime = '08:00'
-    this.endTime = '17:00'
+    this.startTime = new HourMinutes(8, 0)
+    this.endTime = new HourMinutes(17, 0)
     this.dayMinutes = 540
     this.severalListOneDay = [
       {
         severalName: '课时1',
-        severalStart: '08:00',
-        severalEnd: '08:40',
+        severalStart: new HourMinutes(8, 0),
+        severalEnd: new HourMinutes(8, 40),
       },
     ]
     this.dayList = [

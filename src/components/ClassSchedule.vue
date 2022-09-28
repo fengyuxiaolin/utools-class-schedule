@@ -1,11 +1,11 @@
 <script setup>
-import Schedule from './common/class/Schedule'
-const schedule = new Schedule({}).initSchedule()
+const props = defineProps(["classScheduleData"]);
+
 </script>
 
 <template>
   <div class="scheduleBox">
-    {{schedule}}
+    {{classScheduleData.nowSchedule.value?.data ?? classScheduleData.nowSchedule.data}}
   </div>
 </template>
 

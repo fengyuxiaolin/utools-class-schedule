@@ -1,4 +1,4 @@
-export default class Course {
+export const Course = class Course {
   constructor({
     courseName,
     teacherName,

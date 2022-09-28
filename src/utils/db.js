@@ -22,8 +22,29 @@ export const createId = (prefix) => {
  * @param {DbDoc} dbDoc 数据库文档
  * @returns 新增结果
  */
+export const promisesPostApi = ({ prefix = 'db/data', data, _rev }) => {
+  let _id = createId(prefix)
+  return db.promises.put({ _id, data, _rev })
+}
+/**
+ * 新增数据库文档
+ *
+ * @param {DbDoc} dbDoc 数据库文档
+ * @returns 新增结果
+ */
 export const postApi = ({ prefix = 'db/data', data, _rev }) => {
   let _id = createId(prefix)
+  return db.put({ _id, data, _rev })
+}
+
+/**
+ * 新增或修改数据库文档
+ *
+ * @param {DbDoc} param 数据库文档
+ * @returns 修改结果
+ */
+export const promisesSaveApi = ({ _id, data, _rev }) => {
+  _id = _id || createId('data/db')
   return db.promises.put({ _id, data, _rev })
 }
 /**
@@ -34,7 +55,7 @@ export const postApi = ({ prefix = 'db/data', data, _rev }) => {
  */
 export const saveApi = ({ _id, data, _rev }) => {
   _id = _id || createId('data/db')
-  return db.promises.put({ _id, data, _rev })
+  return db.put({ _id, data, _rev })
 }
 
 /**
@@ -43,8 +64,27 @@ export const saveApi = ({ _id, data, _rev }) => {
  * @param {string} id 数据id
  * @returns db数据
  */
-export const getApi = (id) => {
+export const promisesGetApi = (id) => {
   return db.promises.get(id)
+}
+/**
+ * 根据id获取db数据
+ *
+ * @param {string} id 数据id
+ * @returns db数据
+ */
+export const getApi = (id) => {
+  return db.get(id)
+}
+
+/**
+ * 删除数据文档
+ *
+ * @param {string | DbDoc} doc
+ * @returns 删除结果
+ */
+export const promisesRemoveApi = (doc) => {
+  return db.promises.remove(doc)
 }
 
 /**
@@ -54,7 +94,17 @@ export const getApi = (id) => {
  * @returns 删除结果
  */
 export const removeApi = (doc) => {
-  return db.promises.remove(doc)
+  return db.remove(doc)
+}
+
+/**
+ * 获取(指定前缀的)所有文档
+ *
+ * @param {string | undefined} key 文档id前缀
+ * @returns 文档列表
+ */
+export const promisesAllDocsApi = (key) => {
+  return db.promises.allDocs(key)
 }
 
 /**
@@ -64,5 +114,5 @@ export const removeApi = (doc) => {
  * @returns 文档列表
  */
 export const allDocsApi = (key) => {
-  return db.promises.allDocs(key)
+  return db.allDocs(key)
 }
