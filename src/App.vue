@@ -1,12 +1,10 @@
 <script setup>
 const { proxy } = getCurrentInstance();
-
 // app 数据
 const appData = {
   dbSettings: ref({}), // 数据库基本设置
   nowSchedule: ref({}) // 当前展示课表
 }
-
 // 当前展示课表数据
 const classScheduleData = {
   dbSettings: appData.dbSettings,
@@ -23,6 +21,7 @@ if (dbSettings == null) {
   // 如果已有配置则获取对应的课表
   appData.nowSchedule.value = proxy.$api.getApi(dbSettings.data.nowScheduleId);
 }
+
 
 /**
  * 初始化数据库配置
@@ -68,4 +67,28 @@ function createBasicSchedule () {
 </template>
 
 <style>
+.gray {
+  color: #747776;
+}
+.small {
+  font-size: 12px;
+}
+.middle {
+  font-size: 14px;
+}
+.large {
+  font-size: 16px;
+}
+.bigger {
+  font-size: 24px;
+}
+.biggest {
+  font-size: 32px;
+}
+.center {
+  text-align: center;
+}
+.bg-several {
+  background-color: #7a9be0;
+}
 </style>
